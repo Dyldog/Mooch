@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14269.12" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1PN-ae-Nmu">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Main View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="FriendTab" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ad-f9-prm">
+                                <rect key="frame" x="0.0" y="230" width="375" height="437"/>
+                                <connections>
+                                    <segue destination="UHy-cd-38s" kind="embed" identifier="EmbedTransactionViewController" id="Icf-8t-lmq"/>
+                                </connections>
+                            </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cjj-4P-QmF" customClass="BalanceView" customModule="FriendTab" customModuleProvider="target">
+                                <rect key="frame" x="16" y="84" width="343" height="126"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="126" id="0Nm-Ux-cD0"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Cjj-4P-QmF" firstAttribute="top" secondItem="k9M-r1-MNC" secondAttribute="top" constant="20" id="6XK-gk-msj"/>
+                            <constraint firstItem="Cjj-4P-QmF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="9Cu-TI-8za"/>
+                            <constraint firstItem="5ad-f9-prm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Hoy-xj-ZiU"/>
+                            <constraint firstAttribute="bottom" secondItem="5ad-f9-prm" secondAttribute="bottom" id="Ly5-en-vNw"/>
+                            <constraint firstItem="5ad-f9-prm" firstAttribute="top" secondItem="Cjj-4P-QmF" secondAttribute="bottom" constant="20" id="iq3-DC-6SJ"/>
+                            <constraint firstAttribute="trailing" secondItem="Cjj-4P-QmF" secondAttribute="trailing" constant="16" id="weE-5t-pdS"/>
+                            <constraint firstAttribute="trailing" secondItem="5ad-f9-prm" secondAttribute="trailing" id="z90-0f-b06"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="k9M-r1-MNC"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="bVX-Ea-MJO">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="OsQ-e5-Wax">
+                            <connections>
+                                <action selector="addButtonTapped" destination="BYZ-38-t0r" id="pa9-9w-6rX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="balanceView" destination="Cjj-4P-QmF" id="dXQ-AQ-HTL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="972" y="31.934032983508249"/>
+        </scene>
+        <!--Transaction View Controller-->
+        <scene sceneID="cyi-Vq-yA9">
+            <objects>
+                <viewController id="UHy-cd-38s" customClass="TransactionViewController" customModule="FriendTab" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ulc-Lb-eMX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="437"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="tbl-ET-BbE"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lG5-Vf-Rv5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1897" y="32"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Td4-Ll-9Lj">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1PN-ae-Nmu" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iR5-t6-qaJ">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="IVp-2L-DEy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HRe-y5-JYi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="79" y="32"/>
+        </scene>
+    </scenes>
+</document>
