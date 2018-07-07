@@ -25,7 +25,7 @@
             </objects>
             <point key="canvasLocation" x="-534" y="201"/>
         </scene>
-        <!--Add Transaction View Controller-->
+        <!--Add-->
         <scene sceneID="zKy-82-hMR">
             <objects>
                 <viewController id="z4I-At-K8D" customClass="AddTransactionViewController" customModule="FriendTab" customModuleProvider="target" sceneMemberID="viewController">
@@ -33,61 +33,64 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="ddw-fp-0J1">
-                                <rect key="frame" x="20" y="208" width="335" height="313.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="ddw-fp-0J1">
+                                <rect key="frame" x="71.5" y="184" width="232" height="166.5"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2fr-t6-mrm">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="29"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="232" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="232" id="tVT-FM-6cK"/>
+                                        </constraints>
                                         <segments>
                                             <segment title="I Owe"/>
                                             <segment title="They Owe"/>
                                         </segments>
                                     </segmentedControl>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Amount" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CiA-hn-ut5">
-                                        <rect key="frame" x="0.0" y="46" width="335" height="46"/>
+                                        <rect key="frame" x="0.0" y="46" width="232" height="32"/>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="38"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="26"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="for" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uww-Ru-fBg">
-                                        <rect key="frame" x="0.0" y="110" width="335" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="96" width="232" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Description" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ntj-aJ-dH4">
-                                        <rect key="frame" x="0.0" y="148.5" width="335" height="46"/>
+                                        <rect key="frame" x="0.0" y="134.5" width="232" height="32"/>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="38"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="26"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O96-lz-1aN">
-                                        <rect key="frame" x="0.0" y="212.5" width="335" height="50"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Xf-bU-LQT" customClass="RoundedButton" customModule="FriendTab" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="280.5" width="335" height="33"/>
-                                        <color key="backgroundColor" red="0.18431372549019609" green="0.48627450980392156" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                        <state key="normal" title="Add">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="addButtonTapped" destination="z4I-At-K8D" eventType="primaryActionTriggered" id="IFO-iB-O7k"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Xf-bU-LQT" customClass="RoundedButton" customModule="FriendTab" customModuleProvider="target">
+                                <rect key="frame" x="71.5" y="514" width="232" height="33"/>
+                                <color key="backgroundColor" red="0.18431372549019609" green="0.48627450980392156" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="232" id="gfx-KQ-Tw7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <state key="normal" title="Add">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="addButtonTapped" destination="z4I-At-K8D" eventType="primaryActionTriggered" id="IFO-iB-O7k"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="ddw-fp-0J1" firstAttribute="leading" secondItem="f2x-UW-L25" secondAttribute="leading" constant="20" id="IXh-9I-MZI"/>
-                            <constraint firstItem="ddw-fp-0J1" firstAttribute="centerY" secondItem="PM9-z2-TtR" secondAttribute="centerY" id="Uob-zX-dQc"/>
-                            <constraint firstItem="f2x-UW-L25" firstAttribute="trailing" secondItem="ddw-fp-0J1" secondAttribute="trailing" constant="20" id="hjK-2q-rWM"/>
+                            <constraint firstItem="f2x-UW-L25" firstAttribute="bottom" secondItem="2Xf-bU-LQT" secondAttribute="bottom" constant="120" id="Ykw-QM-IGU"/>
+                            <constraint firstItem="ddw-fp-0J1" firstAttribute="centerX" secondItem="PM9-z2-TtR" secondAttribute="centerX" id="eSC-8F-qbZ"/>
+                            <constraint firstItem="ddw-fp-0J1" firstAttribute="top" secondItem="f2x-UW-L25" secondAttribute="top" constant="120" id="iq3-eU-6JU"/>
+                            <constraint firstItem="2Xf-bU-LQT" firstAttribute="centerX" secondItem="PM9-z2-TtR" secondAttribute="centerX" id="qzA-yb-9Gq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="f2x-UW-L25"/>
                     </view>
-                    <navigationItem key="navigationItem" id="79l-ta-Jie">
+                    <navigationItem key="navigationItem" title="Add" id="79l-ta-Jie">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="bXx-KW-Hpf">
                             <connections>
                                 <action selector="cancelButtonTapped" destination="z4I-At-K8D" id="vVV-Gp-snh"/>

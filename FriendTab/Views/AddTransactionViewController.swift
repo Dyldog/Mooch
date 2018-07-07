@@ -13,7 +13,8 @@ protocol AddTransactionViewControllerDelegate {
     func userDidCancel(in viewController: AddTransactionViewController)
 }
 
-class AddTransactionViewController: UIViewController {
+class AddTransactionViewController: UIViewController, UITextFieldDelegate {
+    
     var personId: String? {
         didSet {
             title = person?.name.0
@@ -37,7 +38,11 @@ class AddTransactionViewController: UIViewController {
     }
     
     @IBOutlet private var descriptionTextField: UITextField!
-    @IBOutlet private var amountTextField: UITextField!
+    @IBOutlet private var amountTextField: UITextField! {
+        didSet {
+            amountTextField.delegate = self
+        }
+    }
     @IBOutlet private var payeeSegementedControl: UISegmentedControl!
     
     var delegate: AddTransactionViewControllerDelegate?
@@ -71,5 +76,18 @@ class AddTransactionViewController: UIViewController {
         TransactionManager.shared.addTransaction(withDescription: description, amount: amount, forPersonWithId: person.id)
         
         delegate?.userDidAddTransaction(in: self)
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text, let textRange = Range(range, in: text) else { return false }
+        
+        let updatedText = text.replacingCharacters(in: textRange, with: string)
+        
+        guard let _ = Float(updatedText) else { return false }
+                
+        return true
+            
+            
+            
     }
 }
