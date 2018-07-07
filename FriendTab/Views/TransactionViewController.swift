@@ -13,14 +13,16 @@ struct TransactionCellItem {
     let amount: String
 }
 
+protocol TransactionViewControllerDelegate {
+    func userDidDeleteTransaction(at index: Int)
+}
+
 @IBDesignable
 class TransactionViewController: TextTableViewController {
     
-    var cellItems: [TransactionCellItem] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    var delegate: TransactionViewControllerDelegate?
+    
+    var cellItems: [TransactionCellItem] = []
     
     override init() {
         super.init()
@@ -41,5 +43,19 @@ class TransactionViewController: TextTableViewController {
     override func tableView(_ tableView: UITableView, detailTextForRowAt indexPath: IndexPath) -> String? {
         let item = cellItems[indexPath.row]
         return "\(item.description)"
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let index = indexPath.row
+        
+        if editingStyle == .delete {
+            cellItems.remove(at: index)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            delegate?.userDidDeleteTransaction(at: index)
+        }
+    }
+    
+    func reloadData() {
+        tableView.reloadData()
     }
 }

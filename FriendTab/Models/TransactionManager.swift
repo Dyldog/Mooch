@@ -9,6 +9,9 @@
 import Foundation
 
 class TransactionManager {
+    
+    static var shared = TransactionManager()
+    
     private(set) lazy var transactions: [Transaction] = [
         .init(id: newTransactionId(), amount: 101.23, description: "All da beeerrrrzzzzz"),
         .init(id: newTransactionId(), amount: -75.99, description: "Some nachos"),

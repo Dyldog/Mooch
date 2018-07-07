@@ -46,9 +46,11 @@ private extension Array where Element == Transaction {
     }
 }
 
-public class MainViewController: UIViewController {
+public class MainViewController: UIViewController, AddTransactionViewControllerDelegate, TransactionViewControllerDelegate {
     
-    let transactionManager = TransactionManager()
+    var transactionManager: TransactionManager {
+        return TransactionManager.shared
+    }
     
     @IBOutlet var balanceView: BalanceView! {
         didSet {
@@ -58,6 +60,7 @@ public class MainViewController: UIViewController {
     
     var transactionViewController: TransactionViewController! {
         didSet {
+            transactionViewController.delegate = self
             reloadTransactionList()
         }
     }
@@ -77,7 +80,16 @@ public class MainViewController: UIViewController {
     }
     
     @IBAction func addButtonTapped() {
-        showAddTransactionAlert(description: nil, amount: nil)
+//        showAddTransactionAlert(description: nil, amount: nil)
+        showAddViewController()
+    }
+    
+    func showAddViewController() {
+        guard let addNavigationController = UIStoryboard(name: "Add Transaction", bundle: nil).instantiateInitialViewController() as? UINavigationController, let addViewController = addNavigationController.topViewController as? AddTransactionViewController else { return }
+        
+        addViewController.delegate = self
+        
+        present(addNavigationController, animated: true, completion: nil)
     }
     
     func showAddTransactionAlert(description: String?, amount: String?) {
@@ -98,7 +110,7 @@ public class MainViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { action in
             guard let textFields = alert.textFields else { return }
             
-            guard let newDescription = alert.textFields?[0].text, newDescription.count > 0 else {
+            guard let newDescription = textFields[0].text, newDescription.count > 0 else {
                 self.alert(title: "Error", message: "Please enter a valid description", completion: {
                     self.present(alert, animated: true, completion: nil)
                 })
@@ -125,10 +137,34 @@ public class MainViewController: UIViewController {
     
     private func reloadTransactionList() {
         transactionViewController.cellItems = transactionManager.transactions.transactionCellItems
+        transactionViewController.reloadData()
     }
     
     private func reloadViews() {
         reloadBalanceView()
         reloadTransactionList()
     }
+    
+    // MARK: Conformance -
+    
+    // MARK: AddTransactionViewControllerDelegate
+    
+    func userDidAddTransaction(in viewController: AddTransactionViewController) {
+        reloadViews()
+        viewController.dismiss(animated: true, completion: nil)
+    }
+    
+    func userDidCancel(in viewController: AddTransactionViewController) {
+        viewController.dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: TransactionViewControllerDelegate
+    
+    func userDidDeleteTransaction(at index: Int) {
+        let transaction = TransactionManager.shared.transactions[index]
+        transactionManager.removeTransaction(transaction)
+        
+        reloadBalanceView()
+    }
 }
+

@@ -30,6 +30,9 @@
 		498DF4AD20CE4B5200EC2E22 /* NibDesignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498DF4AC20CE4B5200EC2E22 /* NibDesignable.swift */; };
 		499817BA20CE4EBC002B770C /* NibDesignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498DF4AC20CE4B5200EC2E22 /* NibDesignable.swift */; };
 		49E638F120CE6FF100041916 /* TransactionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E638F020CE6FF100041916 /* TransactionManager.swift */; };
+		62663D2A20F0D9A800160A99 /* Add Transaction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62663D2920F0D9A800160A99 /* Add Transaction.storyboard */; };
+		62663D2C20F0D9B500160A99 /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62663D2B20F0D9B500160A99 /* AddTransactionViewController.swift */; };
+		62663D2E20F0DA9400160A99 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62663D2D20F0DA9400160A99 /* RoundedButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +54,9 @@
 		498DF4A920CE44D400EC2E22 /* BalanceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BalanceView.xib; sourceTree = "<group>"; };
 		498DF4AC20CE4B5200EC2E22 /* NibDesignable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibDesignable.swift; sourceTree = "<group>"; };
 		49E638F020CE6FF100041916 /* TransactionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionManager.swift; sourceTree = "<group>"; };
+		62663D2920F0D9A800160A99 /* Add Transaction.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Add Transaction.storyboard"; sourceTree = "<group>"; };
+		62663D2B20F0D9B500160A99 /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
+		62663D2D20F0DA9400160A99 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +101,6 @@
 				4984126F20CE67B600BAFF07 /* Models */,
 				498DF49F20CE42F100EC2E22 /* Views */,
 				49093E8320CE29640094F92E /* AppDelegate.swift */,
-				49093E8720CE29640094F92E /* Main.storyboard */,
 				49093E8A20CE29650094F92E /* Assets.xcassets */,
 				49093E8C20CE29650094F92E /* LaunchScreen.storyboard */,
 				49093E8F20CE29650094F92E /* Info.plist */,
@@ -135,10 +140,14 @@
 		498DF49F20CE42F100EC2E22 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				49093E8720CE29640094F92E /* Main.storyboard */,
 				498DF4A420CE431400EC2E22 /* MainViewController.swift */,
 				498DF4A020CE430300EC2E22 /* TransactionViewController.swift */,
 				498DF4A220CE430D00EC2E22 /* BalanceView.swift */,
 				498DF4A920CE44D400EC2E22 /* BalanceView.xib */,
+				62663D2B20F0D9B500160A99 /* AddTransactionViewController.swift */,
+				62663D2920F0D9A800160A99 /* Add Transaction.storyboard */,
+				62663D2D20F0DA9400160A99 /* RoundedButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -236,6 +245,7 @@
 			files = (
 				49093E8E20CE29650094F92E /* LaunchScreen.storyboard in Resources */,
 				498DF4AA20CE44D400EC2E22 /* BalanceView.xib in Resources */,
+				62663D2A20F0D9A800160A99 /* Add Transaction.storyboard in Resources */,
 				49093E8B20CE29650094F92E /* Assets.xcassets in Resources */,
 				49093E8920CE29640094F92E /* Main.storyboard in Resources */,
 			);
@@ -263,7 +273,9 @@
 				49093EA720CE34710094F92E /* ViewController+Extensions.swift in Sources */,
 				49093EA520CE344C0094F92E /* Numbers+Extensions.swift in Sources */,
 				49E638F120CE6FF100041916 /* TransactionManager.swift in Sources */,
+				62663D2E20F0DA9400160A99 /* RoundedButton.swift in Sources */,
 				498DF4A320CE430D00EC2E22 /* BalanceView.swift in Sources */,
+				62663D2C20F0D9B500160A99 /* AddTransactionViewController.swift in Sources */,
 				498DF4AD20CE4B5200EC2E22 /* NibDesignable.swift in Sources */,
 				49093E8420CE29640094F92E /* AppDelegate.swift in Sources */,
 			);

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14269.14" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="e4G-Ey-bj3">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="FIg-hK-GAv">
+            <objects>
+                <navigationController id="e4G-Ey-bj3" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ULB-Wv-gSx">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="z4I-At-K8D" kind="relationship" relationship="rootViewController" id="80K-iZ-jSW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hkt-lg-sGh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-534" y="201"/>
+        </scene>
+        <!--Add Transaction View Controller-->
+        <scene sceneID="zKy-82-hMR">
+            <objects>
+                <viewController id="z4I-At-K8D" customClass="AddTransactionViewController" customModule="FriendTab" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PM9-z2-TtR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="ddw-fp-0J1">
+                                <rect key="frame" x="20" y="208" width="335" height="313.5"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2fr-t6-mrm">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="29"/>
+                                        <segments>
+                                            <segment title="I Owe"/>
+                                            <segment title="They Owe"/>
+                                        </segments>
+                                    </segmentedControl>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Amount" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CiA-hn-ut5">
+                                        <rect key="frame" x="0.0" y="46" width="335" height="46"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="38"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="for" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uww-Ru-fBg">
+                                        <rect key="frame" x="0.0" y="110" width="335" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Description" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ntj-aJ-dH4">
+                                        <rect key="frame" x="0.0" y="148.5" width="335" height="46"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="38"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O96-lz-1aN">
+                                        <rect key="frame" x="0.0" y="212.5" width="335" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Xf-bU-LQT" customClass="RoundedButton" customModule="FriendTab" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="280.5" width="335" height="33"/>
+                                        <color key="backgroundColor" red="0.18431372549019609" green="0.48627450980392156" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <state key="normal" title="Add">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addButtonTapped" destination="z4I-At-K8D" eventType="primaryActionTriggered" id="IFO-iB-O7k"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ddw-fp-0J1" firstAttribute="leading" secondItem="f2x-UW-L25" secondAttribute="leading" constant="20" id="IXh-9I-MZI"/>
+                            <constraint firstItem="ddw-fp-0J1" firstAttribute="centerY" secondItem="PM9-z2-TtR" secondAttribute="centerY" id="Uob-zX-dQc"/>
+                            <constraint firstItem="f2x-UW-L25" firstAttribute="trailing" secondItem="ddw-fp-0J1" secondAttribute="trailing" constant="20" id="hjK-2q-rWM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="f2x-UW-L25"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="79l-ta-Jie">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="bXx-KW-Hpf">
+                            <connections>
+                                <action selector="cancelButtonTapped" destination="z4I-At-K8D" id="vVV-Gp-snh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="amountTextField" destination="CiA-hn-ut5" id="CPe-aX-uBr"/>
+                        <outlet property="descriptionTextField" destination="ntj-aJ-dH4" id="8RQ-Av-a67"/>
+                        <outlet property="payeeSegementedControl" destination="2fr-t6-mrm" id="HOX-Yx-hur"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LVj-Pj-xRS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="676" y="179.46026986506749"/>
+        </scene>
+    </scenes>
+</document>
