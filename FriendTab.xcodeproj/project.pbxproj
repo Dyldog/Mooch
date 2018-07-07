@@ -102,7 +102,7 @@
 		49093E8220CE29640094F92E /* FriendTab */ = {
 			isa = PBXGroup;
 			children = (
-				4984126F20CE67B600BAFF07 /* Models */,
+				4984126F20CE67B600BAFF07 /* Model */,
 				498DF49F20CE42F100EC2E22 /* Views */,
 				49093E8320CE29640094F92E /* AppDelegate.swift */,
 				49093E8A20CE29650094F92E /* Assets.xcassets */,
@@ -132,30 +132,54 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		4984126F20CE67B600BAFF07 /* Models */ = {
+		4984126F20CE67B600BAFF07 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				4984127020CE67CA00BAFF07 /* Transaction.swift */,
 				49E638F020CE6FF100041916 /* TransactionManager.swift */,
 			);
-			path = Models;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		498DF49F20CE42F100EC2E22 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				620F1E3220F10961002E8DAD /* People */,
+				620F1E3320F1096B002E8DAD /* Transactions */,
+				620F1E3420F10975002E8DAD /* Add Transaction */,
+				62663D2D20F0DA9400160A99 /* RoundedButton.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		620F1E3220F10961002E8DAD /* People */ = {
+			isa = PBXGroup;
+			children = (
 				62663D3120F0ECF000160A99 /* People.storyboard */,
 				62663D2F20F0E9DB00160A99 /* PeopleViewController.swift */,
+			);
+			path = People;
+			sourceTree = "<group>";
+		};
+		620F1E3320F1096B002E8DAD /* Transactions */ = {
+			isa = PBXGroup;
+			children = (
 				49093E8720CE29640094F92E /* Main.storyboard */,
 				498DF4A420CE431400EC2E22 /* MainViewController.swift */,
 				498DF4A020CE430300EC2E22 /* TransactionViewController.swift */,
 				498DF4A220CE430D00EC2E22 /* BalanceView.swift */,
 				498DF4A920CE44D400EC2E22 /* BalanceView.xib */,
+			);
+			path = Transactions;
+			sourceTree = "<group>";
+		};
+		620F1E3420F10975002E8DAD /* Add Transaction */ = {
+			isa = PBXGroup;
+			children = (
 				62663D2B20F0D9B500160A99 /* AddTransactionViewController.swift */,
 				62663D2920F0D9A800160A99 /* Add Transaction.storyboard */,
-				62663D2D20F0DA9400160A99 /* RoundedButton.swift */,
 			);
-			path = Views;
+			path = "Add Transaction";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
