@@ -14,6 +14,15 @@ protocol AddTransactionViewControllerDelegate {
 }
 
 class AddTransactionViewController: UIViewController {
+    var personId: String? {
+        didSet {
+            title = person?.name.0
+        }
+    }
+    
+    var person: Person? {
+        return TransactionManager.shared.people.first(where: { $0.id == personId })
+    }
     
     private enum OwerSegmentedControlIndices: Int {
         case iOwe = 0
@@ -42,6 +51,8 @@ class AddTransactionViewController: UIViewController {
     }
     
     private func addTransaction() {
+        guard let person = person else { return }
+        
         guard let description = descriptionTextField.text, description.count > 0 else {
             alert(title: "Error", message: "Please enter a description", completion: nil); return
         }
@@ -57,7 +68,7 @@ class AddTransactionViewController: UIViewController {
         let sign = Float(OwerSegmentedControlIndices(rawValue: payeeSegementedControl.selectedSegmentIndex)!.transactionSign)
         let amount = sign * unsignedAmount
         
-        TransactionManager.shared.addTransaction(withDescription: description, amount: amount)
+        TransactionManager.shared.addTransaction(withDescription: description, amount: amount, forPersonWithId: person.id)
         
         delegate?.userDidAddTransaction(in: self)
     }

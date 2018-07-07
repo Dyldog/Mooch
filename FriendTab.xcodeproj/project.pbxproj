@@ -33,6 +33,8 @@
 		62663D2A20F0D9A800160A99 /* Add Transaction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62663D2920F0D9A800160A99 /* Add Transaction.storyboard */; };
 		62663D2C20F0D9B500160A99 /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62663D2B20F0D9B500160A99 /* AddTransactionViewController.swift */; };
 		62663D2E20F0DA9400160A99 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62663D2D20F0DA9400160A99 /* RoundedButton.swift */; };
+		62663D3020F0E9DB00160A99 /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62663D2F20F0E9DB00160A99 /* PeopleViewController.swift */; };
+		62663D3220F0ECF000160A99 /* People.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62663D3120F0ECF000160A99 /* People.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +59,8 @@
 		62663D2920F0D9A800160A99 /* Add Transaction.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Add Transaction.storyboard"; sourceTree = "<group>"; };
 		62663D2B20F0D9B500160A99 /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
 		62663D2D20F0DA9400160A99 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		62663D2F20F0E9DB00160A99 /* PeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
+		62663D3120F0ECF000160A99 /* People.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = People.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +144,8 @@
 		498DF49F20CE42F100EC2E22 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				62663D3120F0ECF000160A99 /* People.storyboard */,
+				62663D2F20F0E9DB00160A99 /* PeopleViewController.swift */,
 				49093E8720CE29640094F92E /* Main.storyboard */,
 				498DF4A420CE431400EC2E22 /* MainViewController.swift */,
 				498DF4A020CE430300EC2E22 /* TransactionViewController.swift */,
@@ -246,6 +252,7 @@
 				49093E8E20CE29650094F92E /* LaunchScreen.storyboard in Resources */,
 				498DF4AA20CE44D400EC2E22 /* BalanceView.xib in Resources */,
 				62663D2A20F0D9A800160A99 /* Add Transaction.storyboard in Resources */,
+				62663D3220F0ECF000160A99 /* People.storyboard in Resources */,
 				49093E8B20CE29650094F92E /* Assets.xcassets in Resources */,
 				49093E8920CE29640094F92E /* Main.storyboard in Resources */,
 			);
@@ -272,6 +279,7 @@
 				4984127120CE67CA00BAFF07 /* Transaction.swift in Sources */,
 				49093EA720CE34710094F92E /* ViewController+Extensions.swift in Sources */,
 				49093EA520CE344C0094F92E /* Numbers+Extensions.swift in Sources */,
+				62663D3020F0E9DB00160A99 /* PeopleViewController.swift in Sources */,
 				49E638F120CE6FF100041916 /* TransactionManager.swift in Sources */,
 				62663D2E20F0DA9400160A99 /* RoundedButton.swift in Sources */,
 				498DF4A320CE430D00EC2E22 /* BalanceView.swift in Sources */,

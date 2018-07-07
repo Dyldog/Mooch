@@ -13,3 +13,15 @@ struct Transaction {
     let amount: Float
     let description: String
 }
+
+class Person: NSObject {
+    let id: String
+    let name: (String, String)
+    var transactions: [Transaction]
+    
+    init(id: String, name: (String, String), transactions: [Transaction]) {
+        self.id = id
+        self.name = name
+        self.transactions = transactions
+    }
+}

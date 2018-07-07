@@ -52,6 +52,16 @@ public class MainViewController: UIViewController, AddTransactionViewControllerD
         return TransactionManager.shared
     }
     
+    var personId: String? {
+        didSet {
+            title = person?.name.0
+        }
+    }
+    
+    var person: Person? {
+        return transactionManager.people.first(where: { $0.id == personId })
+    }
+    
     @IBOutlet var balanceView: BalanceView! {
         didSet {
             reloadBalanceView()
@@ -88,11 +98,13 @@ public class MainViewController: UIViewController, AddTransactionViewControllerD
         guard let addNavigationController = UIStoryboard(name: "Add Transaction", bundle: nil).instantiateInitialViewController() as? UINavigationController, let addViewController = addNavigationController.topViewController as? AddTransactionViewController else { return }
         
         addViewController.delegate = self
+        addViewController.personId = personId
         
         present(addNavigationController, animated: true, completion: nil)
     }
     
     func showAddTransactionAlert(description: String?, amount: String?) {
+        guard let person = person else { return }
         let alert = UIAlertController(title: "Add Transaction", message: nil, preferredStyle: .alert)
         
         alert.addTextField(configurationHandler: { descriptionTextfield in
@@ -124,7 +136,7 @@ public class MainViewController: UIViewController, AddTransactionViewControllerD
                 return
             }
             
-            self.transactionManager.addTransaction(withDescription: newDescription, amount: newAmount)
+            self.transactionManager.addTransaction(withDescription: newDescription, amount: newAmount, forPersonWithId: person.id)
             self.reloadViews()
         }))
         
@@ -132,11 +144,13 @@ public class MainViewController: UIViewController, AddTransactionViewControllerD
     }
     
     private func reloadBalanceView() {
-        balanceView.viewItem = transactionManager.transactions.balanceViewItem
+        guard let person = person else { return }
+        balanceView.viewItem = person.transactions.balanceViewItem
     }
     
     private func reloadTransactionList() {
-        transactionViewController.cellItems = transactionManager.transactions.transactionCellItems
+        guard let person = person else { return }
+        transactionViewController.cellItems = person.transactions.transactionCellItems
         transactionViewController.reloadData()
     }
     
@@ -161,8 +175,10 @@ public class MainViewController: UIViewController, AddTransactionViewControllerD
     // MARK: TransactionViewControllerDelegate
     
     func userDidDeleteTransaction(at index: Int) {
-        let transaction = TransactionManager.shared.transactions[index]
-        transactionManager.removeTransaction(transaction)
+        guard let person = person else { return }
+        
+        let transaction = person.transactions[index]
+        transactionManager.removeTransaction(withId: transaction.id, forPersonWithId: person.id)
         
         reloadBalanceView()
     }

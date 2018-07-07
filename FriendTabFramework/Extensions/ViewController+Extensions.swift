@@ -43,7 +43,6 @@ open class TextTableViewController: UIViewController, UITableViewDataSource, UIT
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let text = self.tableView(self.tableView, textForRowAt: indexPath)
-        
         let detailText = self.tableView(self.tableView, detailTextForRowAt: indexPath)
         
         let cellStyle: UITableViewCell.CellStyle = {
@@ -65,6 +64,7 @@ open class TextTableViewController: UIViewController, UITableViewDataSource, UIT
         
         cell.textLabel?.text = text
         cell.detailTextLabel?.text = detailText
+        cell.accessoryType = self.tableView(tableView, accessoryForRowAt: indexPath)
         
         return cell
     }
@@ -81,7 +81,9 @@ open class TextTableViewController: UIViewController, UITableViewDataSource, UIT
         return nil
     }
     
-    
+    open func tableView(_ tableView: UITableView, accessoryForRowAt indexPath: IndexPath) -> UITableViewCell.AccessoryType {
+        return .none
+    }
 }
 
 extension UIViewController {
