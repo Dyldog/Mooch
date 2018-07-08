@@ -30,6 +30,9 @@
 		498DF4AD20CE4B5200EC2E22 /* NibDesignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498DF4AC20CE4B5200EC2E22 /* NibDesignable.swift */; };
 		499817BA20CE4EBC002B770C /* NibDesignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498DF4AC20CE4B5200EC2E22 /* NibDesignable.swift */; };
 		49E638F120CE6FF100041916 /* TransactionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E638F020CE6FF100041916 /* TransactionManager.swift */; };
+		620F1E3720F1C279002E8DAD /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 620F1E3520F1C279002E8DAD /* Model.xcdatamodeld */; };
+		620F1E3920F1CB5A002E8DAD /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620F1E3820F1CB5A002E8DAD /* TransactionTableViewCell.swift */; };
+		620F1E3B20F1CBF7002E8DAD /* TransactionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 620F1E3A20F1CBF7002E8DAD /* TransactionTableViewCell.xib */; };
 		62663D2A20F0D9A800160A99 /* Add Transaction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62663D2920F0D9A800160A99 /* Add Transaction.storyboard */; };
 		62663D2C20F0D9B500160A99 /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62663D2B20F0D9B500160A99 /* AddTransactionViewController.swift */; };
 		62663D2E20F0DA9400160A99 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62663D2D20F0DA9400160A99 /* RoundedButton.swift */; };
@@ -56,6 +59,9 @@
 		498DF4A920CE44D400EC2E22 /* BalanceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BalanceView.xib; sourceTree = "<group>"; };
 		498DF4AC20CE4B5200EC2E22 /* NibDesignable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibDesignable.swift; sourceTree = "<group>"; };
 		49E638F020CE6FF100041916 /* TransactionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionManager.swift; sourceTree = "<group>"; };
+		620F1E3620F1C279002E8DAD /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		620F1E3820F1CB5A002E8DAD /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
+		620F1E3A20F1CBF7002E8DAD /* TransactionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionTableViewCell.xib; sourceTree = "<group>"; };
 		62663D2920F0D9A800160A99 /* Add Transaction.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Add Transaction.storyboard"; sourceTree = "<group>"; };
 		62663D2B20F0D9B500160A99 /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
 		62663D2D20F0DA9400160A99 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
@@ -84,6 +90,7 @@
 		49093E7720CE29640094F92E = {
 			isa = PBXGroup;
 			children = (
+				620F1E3520F1C279002E8DAD /* Model.xcdatamodeld */,
 				49093E8220CE29640094F92E /* FriendTab */,
 				49093E9B20CE2A160094F92E /* FriendTabFramework */,
 				49093E8120CE29640094F92E /* Products */,
@@ -167,6 +174,8 @@
 				49093E8720CE29640094F92E /* Main.storyboard */,
 				498DF4A420CE431400EC2E22 /* MainViewController.swift */,
 				498DF4A020CE430300EC2E22 /* TransactionViewController.swift */,
+				620F1E3820F1CB5A002E8DAD /* TransactionTableViewCell.swift */,
+				620F1E3A20F1CBF7002E8DAD /* TransactionTableViewCell.xib */,
 				498DF4A220CE430D00EC2E22 /* BalanceView.swift */,
 				498DF4A920CE44D400EC2E22 /* BalanceView.xib */,
 			);
@@ -277,6 +286,7 @@
 				498DF4AA20CE44D400EC2E22 /* BalanceView.xib in Resources */,
 				62663D2A20F0D9A800160A99 /* Add Transaction.storyboard in Resources */,
 				62663D3220F0ECF000160A99 /* People.storyboard in Resources */,
+				620F1E3B20F1CBF7002E8DAD /* TransactionTableViewCell.xib in Resources */,
 				49093E8B20CE29650094F92E /* Assets.xcassets in Resources */,
 				49093E8920CE29640094F92E /* Main.storyboard in Resources */,
 			);
@@ -306,9 +316,11 @@
 				62663D3020F0E9DB00160A99 /* PeopleViewController.swift in Sources */,
 				49E638F120CE6FF100041916 /* TransactionManager.swift in Sources */,
 				62663D2E20F0DA9400160A99 /* RoundedButton.swift in Sources */,
+				620F1E3920F1CB5A002E8DAD /* TransactionTableViewCell.swift in Sources */,
 				498DF4A320CE430D00EC2E22 /* BalanceView.swift in Sources */,
 				62663D2C20F0D9B500160A99 /* AddTransactionViewController.swift in Sources */,
 				498DF4AD20CE4B5200EC2E22 /* NibDesignable.swift in Sources */,
+				620F1E3720F1C279002E8DAD /* Model.xcdatamodeld in Sources */,
 				49093E8420CE29640094F92E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -586,6 +598,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		620F1E3520F1C279002E8DAD /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				620F1E3620F1C279002E8DAD /* Model.xcdatamodel */,
+			);
+			currentVersion = 620F1E3620F1C279002E8DAD /* Model.xcdatamodel */;
+			name = Model.xcdatamodeld;
+			path = FriendTab/Model/Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 49093E7820CE29640094F92E /* Project object */;
 }

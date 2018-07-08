@@ -11,6 +11,7 @@ import UIKit
 struct TransactionCellItem {
     let description: String
     let amount: String
+    let date: String
 }
 
 protocol TransactionViewControllerDelegate {
@@ -18,34 +19,29 @@ protocol TransactionViewControllerDelegate {
 }
 
 @IBDesignable
-class TransactionViewController: TextTableViewController {
+class TransactionViewController: UITableViewController {
     
     var delegate: TransactionViewControllerDelegate?
     
     var cellItems: [TransactionCellItem] = []
     
-    override init() {
-        super.init()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cellItems.count
     }
-    override func tableView(_ tableView: UITableView, textForRowAt indexPath: IndexPath) -> String {
-        let item = cellItems[indexPath.row]
-        return "\(item.amount)"
-    }
     
-    override func tableView(_ tableView: UITableView, detailTextForRowAt indexPath: IndexPath) -> String? {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? TransactionTableViewCell ?? UINib(nibName: "TransactionTableViewCell", bundle: nil).instantiate(withOwner: nil, options: nil).first! as! TransactionTableViewCell
+        
         let item = cellItems[indexPath.row]
-        return "\(item.description)"
+        
+        cell.descriptionLabel.text = item.description
+        cell.amountLabel.text = item.amount
+        cell.dateLabel.text = item.date
+        
+        return cell
     }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let index = indexPath.row
         
         if editingStyle == .delete {

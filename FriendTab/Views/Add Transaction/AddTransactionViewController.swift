@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 protocol AddTransactionViewControllerDelegate {
     func userDidAddTransaction(in viewController: AddTransactionViewController)
@@ -15,14 +16,15 @@ protocol AddTransactionViewControllerDelegate {
 
 class AddTransactionViewController: UIViewController, UITextFieldDelegate {
     
-    var personId: String? {
+    var personId: NSManagedObjectID? {
         didSet {
-            title = person?.name.0
+            title = person?.firstName
         }
     }
     
     var person: Person? {
-        return TransactionManager.shared.people.first(where: { $0.id == personId })
+        guard let personId = personId else { return nil }
+        return TransactionManager.shared.person(withId: personId)
     }
     
     private enum OwerSegmentedControlIndices: Int {
@@ -73,7 +75,7 @@ class AddTransactionViewController: UIViewController, UITextFieldDelegate {
         let sign = Float(OwerSegmentedControlIndices(rawValue: payeeSegementedControl.selectedSegmentIndex)!.transactionSign)
         let amount = sign * unsignedAmount
         
-        TransactionManager.shared.addTransaction(withDescription: description, amount: amount, forPersonWithId: person.id)
+        TransactionManager.shared.addTransaction(withDescription: description, amount: amount, forPersonWithId: person.objectID)
         
         delegate?.userDidAddTransaction(in: self)
     }

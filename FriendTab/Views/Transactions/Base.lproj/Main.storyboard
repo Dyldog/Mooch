@@ -20,7 +20,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ad-f9-prm">
                                 <rect key="frame" x="0.0" y="186" width="375" height="481"/>
                                 <connections>
-                                    <segue destination="UHy-cd-38s" kind="embed" identifier="EmbedTransactionViewController" id="Icf-8t-lmq"/>
+                                    <segue destination="rRP-7k-i6w" kind="embed" identifier="EmbedTransactionViewController" id="YxU-lb-OhO"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cjj-4P-QmF" customClass="BalanceView" customModule="FriendTab" customModuleProvider="target">
@@ -59,19 +59,22 @@
             <point key="canvasLocation" x="972" y="31.934032983508249"/>
         </scene>
         <!--Transaction View Controller-->
-        <scene sceneID="cyi-Vq-yA9">
+        <scene sceneID="18n-zg-d0D">
             <objects>
-                <viewController id="UHy-cd-38s" customClass="TransactionViewController" customModule="FriendTab" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Ulc-Lb-eMX">
+                <tableViewController id="rRP-7k-i6w" customClass="TransactionViewController" customModule="FriendTab" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="FaW-fZ-vBg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="481"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="tbl-ET-BbE"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lG5-Vf-Rv5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <connections>
+                            <outlet property="dataSource" destination="rRP-7k-i6w" id="XP9-KI-qtO"/>
+                            <outlet property="delegate" destination="rRP-7k-i6w" id="opp-3p-H9P"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eEx-LU-zlT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1897" y="32"/>
+            <point key="canvasLocation" x="2143" y="-24"/>
         </scene>
     </scenes>
 </document>

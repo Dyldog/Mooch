@@ -8,13 +8,13 @@
 
 import Foundation
 
-struct Transaction {
+struct Transaction_v1 {
     let id: String
     let amount: Float
     let description: String
 }
 
-class Person: NSObject {
+class Person_v1: NSObject {
     let id: String
     let name: (String, String)
     var transactions: [Transaction]

@@ -16,7 +16,7 @@ class PeopleViewController: TextTableViewController {
     
     override func tableView(_ tableView: UITableView, textForRowAt indexPath: IndexPath) -> String {
         let person = TransactionManager.shared.people[indexPath.row]
-        return "\(person.name.0) \(person.name.1)"
+        return "\(person.firstName!) \(person.lastName!)"
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -31,7 +31,7 @@ class PeopleViewController: TextTableViewController {
     
     func showDetailForPerson(_ person: Person) {
         guard let personViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? MainViewController else { return }
-        personViewController.personId = person.id
+        personViewController.personId = person.objectID
         navigationController?.pushViewController(personViewController, animated: true)
     }
     

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 extension NumberFormatter {
     static let sharedCurrencyFormatter: NumberFormatter = {
@@ -16,12 +17,23 @@ extension NumberFormatter {
     }()
 }
 
+extension DateFormatter {
+    static let sharedDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h:m a EEEE, d/M/y"
+        return dateFormatter
+    }()
+}
+
+
+
 private extension Array where Element == Transaction {
     var transactionCellItems: [TransactionCellItem] {
         return map {
             return TransactionCellItem(
-                description: $0.description,
-                amount: NumberFormatter.sharedCurrencyFormatter.string(from: $0.amount as NSNumber)!
+                description: $0.transactionDescription!,
+                amount: NumberFormatter.sharedCurrencyFormatter.string(from: $0.amount as NSNumber)!,
+                date: DateFormatter.sharedDateFormatter.string(from: $0.date!)
             )
         }
     }
@@ -52,14 +64,15 @@ public class MainViewController: UIViewController, AddTransactionViewControllerD
         return TransactionManager.shared
     }
     
-    var personId: String? {
+    var personId: NSManagedObjectID? {
         didSet {
-            title = person?.name.0
+            title = person?.firstName
         }
     }
     
     var person: Person? {
-        return transactionManager.people.first(where: { $0.id == personId })
+        guard let personId = personId else { return nil }
+        return transactionManager.person(withId: personId)
     }
     
     @IBOutlet var balanceView: BalanceView! {
@@ -136,7 +149,7 @@ public class MainViewController: UIViewController, AddTransactionViewControllerD
                 return
             }
             
-            self.transactionManager.addTransaction(withDescription: newDescription, amount: newAmount, forPersonWithId: person.id)
+            self.transactionManager.addTransaction(withDescription: newDescription, amount: newAmount, forPersonWithId: person.objectID)
             self.reloadViews()
         }))
         
@@ -144,13 +157,13 @@ public class MainViewController: UIViewController, AddTransactionViewControllerD
     }
     
     private func reloadBalanceView() {
-        guard let person = person else { return }
-        balanceView.viewItem = person.transactions.balanceViewItem
+        guard let person = person, let transactions = person.transactions?.array as? [Transaction] else { return }
+        balanceView.viewItem = transactions.balanceViewItem
     }
     
     private func reloadTransactionList() {
-        guard let person = person else { return }
-        transactionViewController.cellItems = person.transactions.transactionCellItems
+        guard let person = person, let transactions = person.transactions?.array as? [Transaction] else { return }
+        transactionViewController.cellItems = transactions.transactionCellItems
         transactionViewController.reloadData()
     }
     
@@ -177,8 +190,8 @@ public class MainViewController: UIViewController, AddTransactionViewControllerD
     func userDidDeleteTransaction(at index: Int) {
         guard let person = person else { return }
         
-        let transaction = person.transactions[index]
-        transactionManager.removeTransaction(withId: transaction.id, forPersonWithId: person.id)
+        let transaction = person.transactions![index] as! Transaction
+        transactionManager.removeTransaction(withId: transaction.objectID)
         
         reloadBalanceView()
     }
