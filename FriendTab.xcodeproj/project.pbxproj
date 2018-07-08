@@ -153,6 +153,12 @@
 		62FA26D020F1F5090049F888 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FA266720F1F5090049F888 /* TextField.swift */; };
 		62FA26D120F1F5090049F888 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FA266820F1F5090049F888 /* Button.swift */; };
 		62FA26D220F1F5090049F888 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FA266820F1F5090049F888 /* Button.swift */; };
+		62FA26D420F1F64D0049F888 /* PersonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62FA26D320F1F64D0049F888 /* PersonTableViewCell.xib */; };
+		62FA26D520F1F64D0049F888 /* PersonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62FA26D320F1F64D0049F888 /* PersonTableViewCell.xib */; };
+		62FA26D720F1FAE00049F888 /* AmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FA26D620F1FAE00049F888 /* AmountView.swift */; };
+		62FA26D820F1FAE00049F888 /* AmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FA26D620F1FAE00049F888 /* AmountView.swift */; };
+		62FA26DA20F1FB490049F888 /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FA26D920F1FB490049F888 /* PersonTableViewCell.swift */; };
+		62FA26DB20F1FB490049F888 /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FA26D920F1FB490049F888 /* PersonTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -236,6 +242,9 @@
 		62FA266620F1F5090049F888 /* GradientSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientSlider.swift; sourceTree = "<group>"; };
 		62FA266720F1F5090049F888 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		62FA266820F1F5090049F888 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		62FA26D320F1F64D0049F888 /* PersonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonTableViewCell.xib; sourceTree = "<group>"; };
+		62FA26D620F1FAE00049F888 /* AmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountView.swift; sourceTree = "<group>"; };
+		62FA26D920F1FB490049F888 /* PersonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -322,6 +331,9 @@
 			children = (
 				62663D3120F0ECF000160A99 /* People.storyboard */,
 				62663D2F20F0E9DB00160A99 /* PeopleViewController.swift */,
+				62FA26D920F1FB490049F888 /* PersonTableViewCell.swift */,
+				62FA26D320F1F64D0049F888 /* PersonTableViewCell.xib */,
+				62FA26D620F1FAE00049F888 /* AmountView.swift */,
 			);
 			path = People;
 			sourceTree = "<group>";
@@ -747,6 +759,7 @@
 			files = (
 				49093E8E20CE29650094F92E /* LaunchScreen.storyboard in Resources */,
 				498DF4AA20CE44D400EC2E22 /* BalanceView.xib in Resources */,
+				62FA26D420F1F64D0049F888 /* PersonTableViewCell.xib in Resources */,
 				62663D2A20F0D9A800160A99 /* Add Transaction.storyboard in Resources */,
 				62663D3220F0ECF000160A99 /* People.storyboard in Resources */,
 				62FA268F20F1F5090049F888 /* Countries.bundle in Resources */,
@@ -763,6 +776,7 @@
 				62FA25FA20F1F41D0049F888 /* LaunchScreen.storyboard in Resources */,
 				498DF4AB20CE471700EC2E22 /* BalanceView.xib in Resources */,
 				62FA260420F1F4AA0049F888 /* Add Transaction.storyboard in Resources */,
+				62FA26D520F1F64D0049F888 /* PersonTableViewCell.xib in Resources */,
 				62FA260220F1F49D0049F888 /* TransactionTableViewCell.xib in Resources */,
 				62FA269020F1F5090049F888 /* Countries.bundle in Resources */,
 				4984127320CE695C00BAFF07 /* Main.storyboard in Resources */,
@@ -826,6 +840,8 @@
 				62FA26AD20F1F5090049F888 /* Address.swift in Sources */,
 				62FA26CB20F1F5090049F888 /* SegmentedControl.swift in Sources */,
 				62FA26AB20F1F5090049F888 /* Location.swift in Sources */,
+				62FA26D720F1FAE00049F888 /* AmountView.swift in Sources */,
+				62FA26DA20F1FB490049F888 /* PersonTableViewCell.swift in Sources */,
 				62FA267920F1F5090049F888 /* UIColor+Extensions.swift in Sources */,
 				62FA26CD20F1F5090049F888 /* GradientSlider.swift in Sources */,
 				62FA268920F1F5090049F888 /* UITextField+Extensions.swift in Sources */,
@@ -881,6 +897,7 @@
 				62FA26C420F1F5090049F888 /* TelegramPickerViewController.swift in Sources */,
 				62FA26A620F1F5090049F888 /* LocationSearchResultsViewController.swift in Sources */,
 				62FA26C020F1F5090049F888 /* ItemWithImage.swift in Sources */,
+				62FA26D820F1FAE00049F888 /* AmountView.swift in Sources */,
 				62FA26AA20F1F5090049F888 /* SearchHistoryManager.swift in Sources */,
 				62FA26A220F1F5090049F888 /* Assets.swift in Sources */,
 				62FA26BA20F1F5090049F888 /* ColorPickerViewController.swift in Sources */,
@@ -897,6 +914,7 @@
 				62FA267820F1F5090049F888 /* UITextView+Extensions.swift in Sources */,
 				62FA268A20F1F5090049F888 /* UITextField+Extensions.swift in Sources */,
 				62FA26BE20F1F5090049F888 /* ImagePickerViewController.swift in Sources */,
+				62FA26DB20F1FB490049F888 /* PersonTableViewCell.swift in Sources */,
 				62FA268020F1F5090049F888 /* UIApplication+Extensions.swift in Sources */,
 				62FA266A20F1F5090049F888 /* Array+Extensions.swift in Sources */,
 				62FA269E20F1F5090049F888 /* TwoTextFieldsViewController.swift in Sources */,

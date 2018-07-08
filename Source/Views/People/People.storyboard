@@ -5,7 +5,6 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="PVc-LV-a9Q" kind="relationship" relationship="rootViewController" id="0sT-w4-ji6"/>
+                        <segue destination="vvh-iD-Vvx" kind="relationship" relationship="rootViewController" id="zNs-xH-tf2"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ijh-3j-4R2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -26,26 +25,31 @@
             <point key="canvasLocation" x="1281" y="-175"/>
         </scene>
         <!--Moochers-->
-        <scene sceneID="EiI-ip-JZU">
+        <scene sceneID="rIg-yJ-Sxc">
             <objects>
-                <viewController id="PVc-LV-a9Q" customClass="PeopleViewController" customModule="FriendTab" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="LPl-Sh-seg">
+                <tableViewController id="vvh-iD-Vvx" customClass="PeopleViewController" customModule="FriendTab" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="2yb-Rl-M5s">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="FY9-Ch-ahw"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Moochers" id="mmD-9A-zPa">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="D9B-a5-HVf">
+                        <connections>
+                            <outlet property="dataSource" destination="vvh-iD-Vvx" id="4bd-8r-Mxm"/>
+                            <outlet property="delegate" destination="vvh-iD-Vvx" id="bsj-E4-CLi"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Moochers" id="3MY-sM-hn3">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="eDv-mv-ilT">
                             <connections>
-                                <action selector="addButtonTapped" destination="PVc-LV-a9Q" id="BrV-c0-fZ7"/>
+                                <action selector="addButtonTapped" destination="vvh-iD-Vvx" id="oye-BH-Vcs"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cGQ-ds-Dhj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QYB-WF-1nU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2030" y="-170"/>
+            <point key="canvasLocation" x="2173" y="-182"/>
         </scene>
     </scenes>
 </document>

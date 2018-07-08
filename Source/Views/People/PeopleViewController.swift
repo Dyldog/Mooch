@@ -8,25 +8,54 @@
 
 import UIKit
 
-class PeopleViewController: TextTableViewController {
+class PeopleViewController: UITableViewController {
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        let indices = 0 ..< TransactionManager.shared.people.count
+        let indexPaths = indices.map({ IndexPath(row: $0, section: 0) })
+        tableView.reloadRows(at: indexPaths, with: .automatic)
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return TransactionManager.shared.people.count
     }
     
-    override func tableView(_ tableView: UITableView, textForRowAt indexPath: IndexPath) -> String {
-        let person = TransactionManager.shared.people[indexPath.row]
-        return "\(person.firstName!) \(person.lastName!)"
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//    override func tableView(_ tableView: UITableView, textForRowAt indexPath: IndexPath) -> String {
+//        let person = TransactionManager.shared.people[indexPath.row]
+//        return "\(person.firstName!) \(person.lastName!)"
+//    }
+//
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let person = TransactionManager.shared.people[indexPath.row]
         showDetailForPerson(person)
         tableView.deselectRow(at: indexPath, animated: true)
     }
+//
+//    override func tableView(_ tableView: UITableView, accessoryForRowAt indexPath: IndexPath) -> UITableViewCell.AccessoryType {
+//        return .disclosureIndicator
+//    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        var cell: PersonTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "PersonTableViewCell") as? PersonTableViewCell
+            
+        if cell == nil {
+            cell = UINib(nibName: "PersonTableViewCell", bundle: nil).instantiate(withOwner: nil)[0] as? PersonTableViewCell
+        }
+        
+        let person = TransactionManager.shared.people[indexPath.row]
+        
+        cell.nameLabel.text = "\(person.firstName!) \(person.lastName!)"
+        
+        let amount = person.transactions!.reduce(0.0, { $0 + ($1 as! Transaction).amount })
+        cell.amountView.setAmount(amount)
+        
+        return cell
+    }
     
-    override func tableView(_ tableView: UITableView, accessoryForRowAt indexPath: IndexPath) -> UITableViewCell.AccessoryType {
-        return .disclosureIndicator
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
     
     func showDetailForPerson(_ person: Person) {
