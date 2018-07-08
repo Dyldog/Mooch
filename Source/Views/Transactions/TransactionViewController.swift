@@ -25,6 +25,11 @@ class TransactionViewController: UITableViewController {
     
     var cellItems: [TransactionCellItem] = []
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.allowsSelection = false
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cellItems.count
     }
