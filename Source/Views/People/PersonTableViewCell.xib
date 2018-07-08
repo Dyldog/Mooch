@@ -24,10 +24,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="oVx-cQ-dgA" customClass="AmountView" customModule="FriendTab" customModuleProvider="target">
-                        <rect key="frame" x="254" y="17" width="105" height="57"/>
+                        <rect key="frame" x="262" y="25.5" width="105" height="40"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="$999.99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOA-P5-AXD">
-                                <rect key="frame" x="10" y="16.5" width="85" height="24"/>
+                                <rect key="frame" x="10" y="8" width="85" height="24"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -38,7 +38,7 @@
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="105" id="5LN-4k-Ds2"/>
                             <constraint firstAttribute="trailing" secondItem="KOA-P5-AXD" secondAttribute="trailing" constant="10" id="NXo-Oa-yLU"/>
                             <constraint firstItem="KOA-P5-AXD" firstAttribute="centerY" secondItem="oVx-cQ-dgA" secondAttribute="centerY" id="ORx-iS-f4Y"/>
-                            <constraint firstAttribute="height" constant="57" id="sCQ-Zq-CK4"/>
+                            <constraint firstAttribute="height" constant="40" id="sCQ-Zq-CK4"/>
                             <constraint firstItem="KOA-P5-AXD" firstAttribute="leading" secondItem="oVx-cQ-dgA" secondAttribute="leading" constant="10" id="zAB-9Z-rdD"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -63,10 +63,11 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="oVx-cQ-dgA" firstAttribute="trailing" secondItem="NpD-Ea-CgD" secondAttribute="trailingMargin" id="Fgb-1l-47C"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="oVx-cQ-dgA" secondAttribute="bottom" constant="6" id="a5r-QO-9ci"/>
+                    <constraint firstItem="oVx-cQ-dgA" firstAttribute="trailing" secondItem="NpD-Ea-CgD" secondAttribute="trailing" constant="-8" id="Fgb-1l-47C"/>
+                    <constraint firstAttribute="bottom" secondItem="oVx-cQ-dgA" secondAttribute="bottom" priority="250" constant="8" id="a5r-QO-9ci"/>
+                    <constraint firstItem="oVx-cQ-dgA" firstAttribute="centerY" secondItem="NpD-Ea-CgD" secondAttribute="centerY" id="kFY-2v-J2x"/>
                     <constraint firstItem="Qte-t2-zjQ" firstAttribute="centerY" secondItem="NpD-Ea-CgD" secondAttribute="centerY" id="p7j-AS-l83"/>
-                    <constraint firstItem="oVx-cQ-dgA" firstAttribute="top" secondItem="NpD-Ea-CgD" secondAttribute="topMargin" constant="6" id="tiy-9C-eWe"/>
+                    <constraint firstItem="oVx-cQ-dgA" firstAttribute="top" secondItem="NpD-Ea-CgD" secondAttribute="top" priority="250" constant="8" id="tiy-9C-eWe"/>
                     <constraint firstItem="Qte-t2-zjQ" firstAttribute="leading" secondItem="NpD-Ea-CgD" secondAttribute="leadingMargin" id="wNK-ic-XRp"/>
                 </constraints>
             </tableViewCellContentView>

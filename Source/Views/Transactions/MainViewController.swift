@@ -32,7 +32,7 @@ private extension Array where Element == Transaction {
         return map {
             return TransactionCellItem(
                 description: $0.transactionDescription!,
-                amount: NumberFormatter.sharedCurrencyFormatter.string(from: $0.amount as NSNumber)!,
+                amount: $0.amount,
                 date: DateFormatter.sharedDateFormatter.string(from: $0.date!)
             )
         }
@@ -44,14 +44,14 @@ private extension Array where Element == Transaction {
         let balanceValue: Float = reduce(0, { $0 + $1.amount })
         
         let liableParty: String = {
-            switch balanceValue {
-            case ..<0.0: return "You owe them"
-            case 0.0: return "Even-steven"
-            default: return "They owe you"
+            switch balanceValue.borrower {
+            case .me: return "You owe them"
+            case .noOne: return "Even-steven"
+            case .them: return "They owe you"
             }
         }()
         return BalanceViewItem(
-            balance: NumberFormatter.sharedCurrencyFormatter.string(from: balanceValue as NSNumber)!,
+            balance: balanceValue,
             liableParty: liableParty,
             remainingTransactions: "\(count) unsettled transactions"
         )

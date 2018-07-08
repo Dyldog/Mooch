@@ -29,16 +29,16 @@ extension Float {
         }
     }
     
-    var payer: TransactionParty {
+    var borrower: TransactionParty {
         switch self.sign {
-        case .negative: return .them
+        case .negative: return .me
         case .zero: return .noOne
-        case .positive: return .me
+        case .positive: return .them
         }
     }
     
-    var payee: TransactionParty {
-        switch payer {
+    var lender: TransactionParty {
+        switch borrower {
         case .me: return .them
         case .them: return .me
         case .noOne: return .noOne

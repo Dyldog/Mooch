@@ -9,7 +9,7 @@
 import UIKit
 
 struct BalanceViewItem {
-    let balance: String
+    let balance: Float
     let liableParty: String
     let remainingTransactions: String
 }
@@ -17,13 +17,13 @@ struct BalanceViewItem {
 @IBDesignable
 class BalanceView: NibDesignable {
     
-    @IBOutlet var amountLabel: UILabel!
+    @IBOutlet var amountView: AmountView!
     @IBOutlet var liablePartyLabel: UILabel!
     @IBOutlet var remainingTransactionsLabel: UILabel!
     
     var viewItem: BalanceViewItem! {
         didSet {
-            amountLabel.text = viewItem.balance
+            amountView.setAmount(viewItem.balance)
             liablePartyLabel.text = viewItem.liableParty
             remainingTransactionsLabel.text = viewItem.remainingTransactions
         }

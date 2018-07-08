@@ -10,7 +10,7 @@ import UIKit
 
 struct TransactionCellItem {
     let description: String
-    let amount: String
+    let amount: Float
     let date: String
 }
 
@@ -35,7 +35,7 @@ class TransactionViewController: UITableViewController {
         let item = cellItems[indexPath.row]
         
         cell.descriptionLabel.text = item.description
-        cell.amountLabel.text = item.amount
+        cell.amountView.setAmount(item.amount)
         cell.dateLabel.text = item.date
         
         return cell

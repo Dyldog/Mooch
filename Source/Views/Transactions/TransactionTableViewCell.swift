@@ -12,6 +12,6 @@ class TransactionTableViewCell: UITableViewCell {
     
     @IBOutlet var descriptionLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
-    @IBOutlet var amountLabel: UILabel!
+    @IBOutlet var amountView: AmountView!
     
 }

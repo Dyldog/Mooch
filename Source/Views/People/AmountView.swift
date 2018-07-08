@@ -14,10 +14,10 @@ class AmountView: UIView {
     func setAmount(_ amount: Float) {
         label.text = NumberFormatter.sharedCurrencyFormatter.string(from: abs(amount) as NSNumber)
         
-        switch amount.payer {
-        case .me: backgroundColor = .red
+        switch amount.borrower {
+        case .them: backgroundColor = .red
         case .noOne: backgroundColor = .green
-        case .them: backgroundColor = .yellow
+        case .me: backgroundColor = .yellow
         }
     }
 }
