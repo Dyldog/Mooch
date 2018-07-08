@@ -43,6 +43,7 @@
                             <color key="backgroundColor" red="0.041486844420433044" green="0.96110039949417114" blue="0.30575358867645264" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="SbB-Ib-QYT" secondAttribute="trailing" constant="10" id="Icu-gX-81h"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="105" id="K1d-wa-FQg"/>
                                 <constraint firstAttribute="height" constant="40" id="KCD-lx-zkO"/>
                                 <constraint firstItem="SbB-Ib-QYT" firstAttribute="centerY" secondItem="aZi-Po-KHn" secondAttribute="centerY" id="y21-as-3NI"/>
                                 <constraint firstItem="SbB-Ib-QYT" firstAttribute="leading" secondItem="aZi-Po-KHn" secondAttribute="leading" constant="10" id="zr6-ub-7bI"/>
