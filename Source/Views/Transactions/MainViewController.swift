@@ -149,7 +149,7 @@ public class MainViewController: UIViewController, AddTransactionViewControllerD
                 return
             }
             
-            self.transactionManager.addTransaction(withDescription: newDescription, amount: newAmount, forPersonWithId: person.objectID)
+            self.transactionManager.addTransaction(withDescription: newDescription, amount: newAmount, date: Date(), forPersonWithId: person.objectID)
             self.reloadViews()
         }))
         
@@ -162,8 +162,10 @@ public class MainViewController: UIViewController, AddTransactionViewControllerD
     }
     
     private func reloadTransactionList() {
-        guard let person = person, let transactions = person.transactions?.array as? [Transaction] else { return }
-        transactionViewController.cellItems = transactions.transactionCellItems
+        guard let person = person, let unsortedTransactions = person.transactions?.array as? [Transaction] else { return }
+        
+        let sortedTransactions = unsortedTransactions.sorted(by: {$0.date < $1.date })
+        transactionViewController.cellItems = sortedTransactions.transactionCellItems
         transactionViewController.reloadData()
     }
     

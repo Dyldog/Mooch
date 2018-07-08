@@ -82,7 +82,7 @@ class AddTransactionViewController: UIViewController, UITextFieldDelegate {
     
     private func showDatePicker(completion: @escaping (Date) -> Void) {
         let alert = UIAlertController(title: "Select Date", message: nil, preferredStyle: .actionSheet)
-        alert.addDatePicker(mode: .dateAndTime, date: Date(), minimumDate: nil, maximumDate: Date()) { date in
+        alert.addDatePicker(mode: .dateAndTime, date: selectedDate, minimumDate: nil, maximumDate: Date()) { date in
             completion(date)
         }
         
@@ -135,7 +135,7 @@ class AddTransactionViewController: UIViewController, UITextFieldDelegate {
         let sign = Float(BorrowerSegmentedControlIndices(rawValue: payeeSegementedControl.selectedSegmentIndex)!.transactionSign)
         let amount = sign * unsignedAmount
         
-        TransactionManager.shared.addTransaction(withDescription: description, amount: amount, forPersonWithId: person.objectID)
+        TransactionManager.shared.addTransaction(withDescription: description, amount: amount, date: selectedDate, forPersonWithId: person.objectID)
         
         delegate?.userDidAddTransaction(in: self)
     }

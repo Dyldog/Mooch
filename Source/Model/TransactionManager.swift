@@ -76,12 +76,12 @@ class TransactionManager {
         return newPerson
     }
     
-    @discardableResult func addTransaction(withDescription description: String, amount: Float, forPersonWithId personId: NSManagedObjectID) -> Transaction? {
+    @discardableResult func addTransaction(withDescription description: String, amount: Float, date: Date, forPersonWithId personId: NSManagedObjectID) -> Transaction? {
         guard let personManagedObject = try? managedObjectContext.existingObject(with: personId), let person = personManagedObject as? Person else { return nil }
         let newTransaction = Transaction(context: managedObjectContext)
         newTransaction.transactionDescription = description
         newTransaction.amount = amount
-        newTransaction.date = Date()
+        newTransaction.date = date
         person.addToTransactions(newTransaction)
         try? person.managedObjectContext?.save() // TODO: Handle errors
         
