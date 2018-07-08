@@ -20,7 +20,7 @@ extension NumberFormatter {
 extension DateFormatter {
     static let sharedDateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "h:m a EEEE, d/M/y"
+        dateFormatter.dateFormat = "h:mm a EEEE, d/M/y"
         return dateFormatter
     }()
 }

@@ -149,6 +149,11 @@ class AddTransactionViewController: UIViewController, UITextFieldDelegate {
         
         let strippedNumberString = updatedText.replacingOccurrences(of: "$", with: "")
         
+        guard strippedNumberString.count > 0 else {
+            textField.text = ""
+            return false
+        }
+        
         guard let _ = Float(strippedNumberString) else { return false }
         
         if !updatedText.contains("$") {
