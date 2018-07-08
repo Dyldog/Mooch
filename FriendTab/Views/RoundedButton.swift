@@ -10,7 +10,7 @@ import UIKit
 
 @IBDesignable class RoundedButton: UIButton {
     
-    @IBInspectable var cornerRadius: CGFloat = 0.0 {
+    @IBInspectable override var cornerRadius: CGFloat {
         didSet {
             layer.cornerRadius = cornerRadius
         }
