@@ -66,7 +66,7 @@ class AddTransactionViewController: UIViewController, UITextFieldDelegate {
             alert(title: "Error", message: "Please enter an amount", completion: nil); return
         }
         
-        guard let unsignedAmount = Float(amountString) else {
+        guard let unsignedAmount = Float(amountString.dropFirst(1)) else {
             alert(title: "Error", message: "Please enter a valid amount", completion: nil); return
         }
         
@@ -79,15 +79,21 @@ class AddTransactionViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard let text = textField.text, let textRange = Range(range, in: text) else { return false }
         
+        guard let text = textField.text, let textRange = Range(range, in: text) else { return false }
         let updatedText = text.replacingCharacters(in: textRange, with: string)
         
-        guard let _ = Float(updatedText) else { return false }
-                
-        return true
-            
-            
-            
+        if let dollarIdx = updatedText.lastIndex(of: "$"), dollarIdx.encodedOffset > 0 { return false }
+        
+        let strippedNumberString = updatedText.replacingOccurrences(of: "$", with: "")
+        
+        guard let _ = Float(strippedNumberString) else { return false }
+        
+        if !updatedText.contains("$") {
+            textField.text = "$\(strippedNumberString)"
+            return false
+        } else {
+            return true
+        }
     }
 }
