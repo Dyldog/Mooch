@@ -41,10 +41,10 @@ private extension Array where Element == Transaction {
 
 private extension Array where Element == Transaction {
     var balanceViewItem: BalanceViewItem {
-        let balanceValue: Float = reduce(0, { $0 + $1.amount })
+        let balanceValue: Float = unsettledTransactions.balance
         
         let liableParty: String = {
-            switch balanceValue.borrower {
+            switch balanceValue.sign.borrower {
             case .me: return "You owe them"
             case .noOne: return "Even-steven"
             case .them: return "They owe you"
@@ -53,7 +53,7 @@ private extension Array where Element == Transaction {
         return BalanceViewItem(
             balance: balanceValue,
             liableParty: liableParty,
-            remainingTransactions: "\(count) unsettled transactions"
+            remainingTransactions: "\(unsettledTransactions.count) unsettled transactions"
         )
     }
 }
@@ -165,10 +165,7 @@ public class MainViewController: UIViewController, AddTransactionViewControllerD
     }
     
     private func reloadTransactionList() {
-        guard let person = person, let unsortedTransactions = person.transactions?.array as? [Transaction] else { return }
-        
-        let sortedTransactions = unsortedTransactions.sorted(by: {$0.date < $1.date })
-        transactionViewController.cellItems = sortedTransactions.transactionCellItems
+        transactionViewController.cellItems = sortedTransactions!.transactionCellItems
         transactionViewController.reloadData()
     }
     

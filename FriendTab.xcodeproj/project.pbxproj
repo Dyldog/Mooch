@@ -39,8 +39,11 @@
 		62663D2E20F0DA9400160A99 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62663D2D20F0DA9400160A99 /* RoundedButton.swift */; };
 		62663D3020F0E9DB00160A99 /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62663D2F20F0E9DB00160A99 /* PeopleViewController.swift */; };
 		62663D3220F0ECF000160A99 /* People.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62663D3120F0ECF000160A99 /* People.storyboard */; };
-		627E818820F20F2900660A01 /* UIColor+Xtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627E818720F20F2900660A01 /* UIColor+Xtensions.swift */; };
-		627E818920F20F4300660A01 /* UIColor+Xtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627E818720F20F2900660A01 /* UIColor+Xtensions.swift */; };
+		627E818820F20F2900660A01 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627E818720F20F2900660A01 /* UIColor+Hex.swift */; };
+		627E818920F20F4300660A01 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627E818720F20F2900660A01 /* UIColor+Hex.swift */; };
+		629E8F9220F612E1008E0091 /* UIColor+Moochers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629E8F9120F612E1008E0091 /* UIColor+Moochers.swift */; };
+		629E8F9420F61317008E0091 /* Sign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629E8F9320F61317008E0091 /* Sign.swift */; };
+		629E8F9620F61337008E0091 /* TransactionParty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629E8F9520F61337008E0091 /* TransactionParty.swift */; };
 		62FA25F620F1D6CE0049F888 /* UIEdgeInsetsZero Fix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FA25F520F1D6CE0049F888 /* UIEdgeInsetsZero Fix.swift */; };
 		62FA25F820F1F4110049F888 /* TransactionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E638F020CE6FF100041916 /* TransactionManager.swift */; };
 		62FA25FA20F1F41D0049F888 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49093E8C20CE29650094F92E /* LaunchScreen.storyboard */; };
@@ -205,7 +208,11 @@
 		62663D2D20F0DA9400160A99 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		62663D2F20F0E9DB00160A99 /* PeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
 		62663D3120F0ECF000160A99 /* People.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = People.storyboard; sourceTree = "<group>"; };
-		627E818720F20F2900660A01 /* UIColor+Xtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Xtensions.swift"; sourceTree = "<group>"; };
+		627E818720F20F2900660A01 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
+		629E8F9020F60B66008E0091 /* Model v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v2.xcdatamodel"; sourceTree = "<group>"; };
+		629E8F9120F612E1008E0091 /* UIColor+Moochers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Moochers.swift"; sourceTree = "<group>"; };
+		629E8F9320F61317008E0091 /* Sign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sign.swift; sourceTree = "<group>"; };
+		629E8F9520F61337008E0091 /* TransactionParty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionParty.swift; sourceTree = "<group>"; };
 		62FA25F520F1D6CE0049F888 /* UIEdgeInsetsZero Fix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsetsZero Fix.swift"; sourceTree = "<group>"; };
 		62FA25FE20F1F4820049F888 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		62FA261A20F1F5090049F888 /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
@@ -312,6 +319,7 @@
 				498DF49F20CE42F100EC2E22 /* Views */,
 				49093E8320CE29640094F92E /* AppDelegate.swift */,
 				49093E8C20CE29650094F92E /* LaunchScreen.storyboard */,
+				629E8F9120F612E1008E0091 /* UIColor+Moochers.swift */,
 				62FA25F720F1F38B0049F888 /* Extensions */,
 			);
 			path = Source;
@@ -332,6 +340,8 @@
 				62FA25FD20F1F4820049F888 /* Model.xcdatamodeld */,
 				4984127020CE67CA00BAFF07 /* Transaction.swift */,
 				49E638F020CE6FF100041916 /* TransactionManager.swift */,
+				629E8F9320F61317008E0091 /* Sign.swift */,
+				629E8F9520F61337008E0091 /* TransactionParty.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -415,7 +425,7 @@
 				62FA25F520F1D6CE0049F888 /* UIEdgeInsetsZero Fix.swift */,
 				49093EA420CE344C0094F92E /* Numbers+Extensions.swift */,
 				49093EA620CE34710094F92E /* ViewController+Extensions.swift */,
-				627E818720F20F2900660A01 /* UIColor+Xtensions.swift */,
+				627E818720F20F2900660A01 /* UIColor+Hex.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -832,9 +842,10 @@
 				62FA26C120F1F5090049F888 /* PhotoLayout.swift in Sources */,
 				62FA267120F1F5090049F888 /* UIView+Extensions.swift in Sources */,
 				4984127120CE67CA00BAFF07 /* Transaction.swift in Sources */,
-				627E818820F20F2900660A01 /* UIColor+Xtensions.swift in Sources */,
+				627E818820F20F2900660A01 /* UIColor+Hex.swift in Sources */,
 				62FA26B320F1F5090049F888 /* Contacts.swift in Sources */,
 				49093EA720CE34710094F92E /* ViewController+Extensions.swift in Sources */,
+				629E8F9220F612E1008E0091 /* UIColor+Moochers.swift in Sources */,
 				49093EA520CE344C0094F92E /* Numbers+Extensions.swift in Sources */,
 				62FA25F620F1D6CE0049F888 /* UIEdgeInsetsZero Fix.swift in Sources */,
 				62FA266F20F1F5090049F888 /* UIViewController+Extensions.swift in Sources */,
@@ -853,11 +864,13 @@
 				62FA25FF20F1F4820049F888 /* Model.xcdatamodeld in Sources */,
 				62663D2E20F0DA9400160A99 /* RoundedButton.swift in Sources */,
 				62FA267D20F1F5090049F888 /* UISearchBar+Extensions.swift in Sources */,
+				629E8F9620F61337008E0091 /* TransactionParty.swift in Sources */,
 				62FA26D120F1F5090049F888 /* Button.swift in Sources */,
 				62FA268120F1F5090049F888 /* UIAlertController+Extensions.swift in Sources */,
 				620F1E3920F1CB5A002E8DAD /* TransactionTableViewCell.swift in Sources */,
 				62FA269720F1F5090049F888 /* PhoneCodeCell.swift in Sources */,
 				62FA266D20F1F5090049F888 /* UIImageView+Extensions.swift in Sources */,
+				629E8F9420F61317008E0091 /* Sign.swift in Sources */,
 				62FA267F20F1F5090049F888 /* UIApplication+Extensions.swift in Sources */,
 				62FA269120F1F5090049F888 /* LocaleStore.swift in Sources */,
 				62FA266920F1F5090049F888 /* Array+Extensions.swift in Sources */,
@@ -939,7 +952,7 @@
 				49093EA820CE34710094F92E /* ViewController+Extensions.swift in Sources */,
 				62FA269420F1F5090049F888 /* LocaleInfo.swift in Sources */,
 				62FA26A420F1F5090049F888 /* PhotoLibraryPickerViewController.swift in Sources */,
-				627E818920F20F4300660A01 /* UIColor+Xtensions.swift in Sources */,
+				627E818920F20F4300660A01 /* UIColor+Hex.swift in Sources */,
 				498DF4A720CE434E00EC2E22 /* BalanceView.swift in Sources */,
 				62FA26CA20F1F5090049F888 /* Label.swift in Sources */,
 				62FA26CE20F1F5090049F888 /* GradientSlider.swift in Sources */,
@@ -1240,9 +1253,10 @@
 		62FA25FD20F1F4820049F888 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				629E8F9020F60B66008E0091 /* Model v2.xcdatamodel */,
 				62FA25FE20F1F4820049F888 /* Model.xcdatamodel */,
 			);
-			currentVersion = 62FA25FE20F1F4820049F888 /* Model.xcdatamodel */;
+			currentVersion = 629E8F9020F60B66008E0091 /* Model v2.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

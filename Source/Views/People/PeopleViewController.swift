@@ -48,7 +48,7 @@ class PeopleViewController: UITableViewController {
         
         cell.nameLabel.text = "\(person.firstName!) \(person.lastName!)"
         
-        let amount = person.transactions!.reduce(0.0, { $0 + ($1 as! Transaction).amount })
+        let amount = person.transactionsArray.unsettledBalance
         cell.amountView.setAmount(amount)
         
         return cell
