@@ -76,7 +76,7 @@ class TransactionManager {
         return newPerson
     }
     
-    @discardableResult func addTransaction(withDescription description: String, amount: Float, date: Date, forPersonWithId personId: NSManagedObjectID) -> Transaction? {
+    @discardableResult func addTransaction(withDescription description: String, amount: Float, date: Date, settlementDate: Date? = nil, forPersonWithId personId: NSManagedObjectID) -> Transaction? {
         guard let personManagedObject = try? managedObjectContext.existingObject(with: personId), let person = personManagedObject as? Person else { return nil }
         let newTransaction = Transaction(context: managedObjectContext)
         newTransaction.transactionDescription = description
@@ -86,6 +86,17 @@ class TransactionManager {
         try? person.managedObjectContext?.save() // TODO: Handle errors
         
         return newTransaction
+    }
+    
+    @discardableResult func updateTransaction(_ transaction: Transaction, withDescription description: String, amount: Float, date: Date, settlementDate: Date? = nil) -> Transaction? {
+
+        transaction.transactionDescription = description
+        transaction.amount = amount
+        transaction.date = date
+        transaction.settlementDate = settlementDate
+        try? transaction.managedObjectContext?.save() // TODO: Handle errors
+        
+        return transaction
     }
     
     func person(withId id: NSManagedObjectID) -> Person? {

@@ -14,7 +14,7 @@ class AmountView: UIView {
     func setAmount(_ amount: Float) {
         label.text = NumberFormatter.sharedCurrencyFormatter.string(from: abs(amount) as NSNumber)
         
-        switch amount.lender {
+        switch amount.sign.lender {
         case .them: backgroundColor = UIColor(hex: "#FFCC00")! // yellow
         case .noOne: backgroundColor = UIColor(hex: "#4CD964")! // green
         case .me: backgroundColor = UIColor(hex: "#FF3B30")! // red

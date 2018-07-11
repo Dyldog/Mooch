@@ -6,60 +6,26 @@
 //  Copyright © 2018 Dylan Elliott. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-enum TransactionParty {
-    case me
-    case them
-    case noOne
-}
-
-enum Sign {
-    case negative
-    case zero
-    case positive
-}
-
-extension Float {
-    var sign: Sign {
-        switch self {
-        case ..<0.0: return .negative
-        case 0.0: return .zero
-        default: return .positive
-        }
+extension Array where Element == Transaction {
+    var unsettledTransactions: [Transaction] {
+        return filter { $0.settlementDate == nil }
     }
     
-    var borrower: TransactionParty {
-        switch self.sign {
-        case .negative: return .me
-        case .zero: return .noOne
-        case .positive: return .them
-        }
+    var balance: Float {
+        return self.reduce(0, { $0 + $1.amount })
     }
     
-    var lender: TransactionParty {
-        switch borrower {
-        case .me: return .them
-        case .them: return .me
-        case .noOne: return .noOne
-        }
+    var unsettledBalance: Float {
+        return self.unsettledTransactions.balance
     }
 }
 
-struct Transaction_v1 {
-    let id: String
-    let amount: Float
-    let description: String
-}
-
-class Person_v1: NSObject {
-    let id: String
-    let name: (String, String)
-    var transactions: [Transaction]
-    
-    init(id: String, name: (String, String), transactions: [Transaction]) {
-        self.id = id
-        self.name = name
-        self.transactions = transactions
+extension Person {
+    var transactionsArray: [Transaction] {
+        return self.transactions?.array as? [Transaction] ?? []
     }
 }
+
+
