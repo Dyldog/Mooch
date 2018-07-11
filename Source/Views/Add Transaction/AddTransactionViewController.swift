@@ -8,10 +8,165 @@
 
 import UIKit
 import CoreData
+import Eureka
 
 protocol AddTransactionViewControllerDelegate {
-    func userDidAddTransaction(in viewController: AddTransactionViewController)
-    func userDidCancel(in viewController: AddTransactionViewController)
+    func userDidAddTransaction(in viewController: AddTransactionFormViewController)
+    func userDidUpdateTransaction(in viewController: AddTransactionFormViewController)
+    func userDidCancel(in viewController: AddTransactionFormViewController)
+}
+
+class AddTransactionFormViewController: FormViewController {
+    
+    var personId: NSManagedObjectID? {
+        didSet {
+            loadViewIfNeeded()
+            loadForm()
+        }
+    }
+    
+    var person: Person? {
+        guard let personId = personId else { return nil }
+        return TransactionManager.shared.person(withId: personId)
+    }
+    
+    var transactionId: NSManagedObjectID? {
+        didSet {
+            loadViewIfNeeded()
+            loadForm()
+        }
+    }
+    
+    var transaction: Transaction? {
+        guard let transactionId = transactionId else { return nil }
+        return TransactionManager.shared.transaction(withId: transactionId)
+    }
+    
+    var delegate: AddTransactionViewControllerDelegate?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        title = "Add"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonTapped))
+        
+    }
+    
+    func loadForm() {
+        form.removeAll()
+        
+        guard let person = person else { return }
+        
+        func updateTints() {
+            let segmentedRow: SegmentedRow<TransactionParty> = form.rowBy(tag: "moocher")!
+            let color = segmentedRow.value!.moocherColor
+            
+            form.allRows.forEach({ $0.baseCell.tintColor = color })
+//            form.rowBy(tag: "clearSettlementButton")?.baseCell.tintColor = UIColor.Moocher.red
+            
+            navigationItem.leftBarButtonItem!.tintColor = color
+            
+            print(inputAccessoryView?.subviews)
+        }
+        
+        form +++ Section()
+            <<< SegmentedRow<TransactionParty>("moocher", { segmentedRow in
+                segmentedRow.title = "Moocher"
+                segmentedRow.options = [.me, .them]
+                segmentedRow.value = transaction?.amount.sign.borrower ?? .me
+                
+                segmentedRow.cellSetup { cell, row in
+                    cell.segmentedControl.setContentHuggingPriority(UILayoutPriority.defaultHigh, for: .horizontal)
+                    updateTints()
+                }
+                
+                segmentedRow.onChange({ segmentedRow in
+                    updateTints()
+                })
+                
+            })
+            <<< TextRow("description", { descriptionRow in
+                descriptionRow.title = "Description"
+                descriptionRow.value = transaction?.transactionDescription
+            })
+            <<< DecimalRow("amount", { amountRow in
+                amountRow.title = "Amount"
+                amountRow.formatter = {
+                    let formatter = NumberFormatter()
+                    formatter.numberStyle = .currency
+                    return formatter
+                }()
+                
+                amountRow.value = transaction != nil ? Double(abs(transaction!.amount)) : nil
+            })
+            <<< DateTimeRow("date", { dateRow in
+                dateRow.title = "Date"
+                dateRow.value = transaction?.date ?? Date()
+            })
+        
+        form +++ Section("Payback")
+            <<< DateTimeRow("settlementDate", { dateRow in
+                dateRow.title = "Date"
+                dateRow.value = transaction?.settlementDate
+                dateRow.onCellSelection { cell, row in
+                    row.value = Date()
+                    row.updateCell()
+                }
+            })
+            <<< ButtonRow("clearSettlementButton", { clearSettlementButton in
+                clearSettlementButton.title = "Clear"
+                clearSettlementButton.cellSetup { cell, row in
+                    cell.textLabel?.tintColor = .red
+                }
+                clearSettlementButton.onCellSelection { cell, row in
+                    let settlementDateRow = self.form.rowBy(tag: "settlementDate")!
+                    settlementDateRow.baseValue = nil
+                    settlementDateRow.updateCell()
+                }
+            })
+        
+        form +++ Section()
+            <<< ButtonRow("button", { button in
+                button.title = transaction == nil ? "Add" : "Save"
+                button.cellSetup({ _,_ in updateTints() })
+                button.onCellSelection({ _, _ in
+                    let amountRow: DecimalRow = self.form.rowBy(tag: "amount")!
+                    let descriptionRow: TextRow = self.form.rowBy(tag: "description")!
+                    let moocherRow: SegmentedRow<TransactionParty> = self.form.rowBy(tag: "moocher")!
+                    let dateRow: DateTimeRow = self.form.rowBy(tag: "date")!
+                    let settlementDateRow: DateTimeRow = self.form.rowBy(tag: "settlementDate")!
+                    
+                    let moocher = moocherRow.value!
+                    let date = dateRow.value!
+                    let settlementDate = settlementDateRow.value
+                    
+                    guard let description = descriptionRow.value, description.count > 0 else {
+                        self.alert(title: "Error", message: "Please enter a description", completion: nil); return
+                    }
+                    
+                    guard let amountValue = amountRow.value else {
+                        self.alert(title: "Error", message: "Please enter an amount", completion: nil); return
+                    }
+                    
+                    let unsignedAmount = Float(amountValue)
+                    
+                    let sign = moocher.borrowerSign
+                    let amount = Float(sign.rawValue) * unsignedAmount
+                    
+                    if let transaction = self.transaction {
+                        TransactionManager.shared.updateTransaction(transaction, withDescription: description, amount: amount, date: date, settlementDate: settlementDate)
+                        self.delegate?.userDidUpdateTransaction(in: self)
+                    } else {
+                        TransactionManager.shared.addTransaction(withDescription: description, amount: amount, date: date, settlementDate: settlementDate, forPersonWithId: person.objectID)
+                        self.delegate?.userDidAddTransaction(in: self)
+                    }
+                })
+            })
+    }
+    
+    @objc func cancelButtonTapped() {
+        delegate?.userDidCancel(in: self)
+    }
 }
 
 class AddTransactionViewController: UIViewController, UITextFieldDelegate {
@@ -63,7 +218,7 @@ class AddTransactionViewController: UIViewController, UITextFieldDelegate {
     var delegate: AddTransactionViewControllerDelegate?
     
     @IBAction func cancelButtonTapped() {
-        delegate?.userDidCancel(in: self)
+//        delegate?.userDidCancel(in: self)
     }
     
     @IBAction func addButtonTapped() {
@@ -137,7 +292,7 @@ class AddTransactionViewController: UIViewController, UITextFieldDelegate {
         
         TransactionManager.shared.addTransaction(withDescription: description, amount: amount, date: selectedDate, forPersonWithId: person.objectID)
         
-        delegate?.userDidAddTransaction(in: self)
+//        delegate?.userDidAddTransaction(in: self)
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

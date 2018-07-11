@@ -15,6 +15,7 @@ struct TransactionCellItem {
 }
 
 protocol TransactionViewControllerDelegate {
+    func userDidSelectTransaction(at index: Int)
     func userDidDeleteTransaction(at index: Int)
 }
 
@@ -27,7 +28,6 @@ class TransactionViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.allowsSelection = false
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -54,6 +54,11 @@ class TransactionViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .automatic)
             delegate?.userDidDeleteTransaction(at: index)
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.userDidSelectTransaction(at: indexPath.row)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func reloadData() {

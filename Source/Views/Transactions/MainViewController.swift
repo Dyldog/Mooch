@@ -108,8 +108,11 @@ public class MainViewController: UIViewController, AddTransactionViewControllerD
     }
     
     func showAddViewController() {
-        guard let addNavigationController = UIStoryboard(name: "Add Transaction", bundle: nil).instantiateInitialViewController() as? UINavigationController, let addViewController = addNavigationController.topViewController as? AddTransactionViewController else { return }
+        // guard let addNavigationController = UIStoryboard(name: "Add Transaction", bundle: nil).instantiateInitialViewController() as? UINavigationController, let addViewController = addNavigationController.topViewController as? AddTransactionViewController else { return }
         
+        let addViewController = AddTransactionFormViewController()
+        let addNavigationController = UINavigationController(rootViewController: addViewController)
+
         addViewController.delegate = self
         addViewController.personId = personId
         
@@ -174,20 +177,42 @@ public class MainViewController: UIViewController, AddTransactionViewControllerD
         reloadTransactionList()
     }
     
+    var sortedTransactions: [Transaction]? {
+        guard let person = person, let unsortedTransactions = person.transactions?.array as? [Transaction] else { return nil }
+        
+        return unsortedTransactions.sorted(by: {$0.date < $1.date })
+    }
+    
     // MARK: Conformance -
     
     // MARK: AddTransactionViewControllerDelegate
     
-    func userDidAddTransaction(in viewController: AddTransactionViewController) {
+    func userDidAddTransaction(in viewController: AddTransactionFormViewController) {
         reloadViews()
         viewController.dismiss(animated: true, completion: nil)
     }
     
-    func userDidCancel(in viewController: AddTransactionViewController) {
+    func userDidUpdateTransaction(in viewController: AddTransactionFormViewController) {
+        reloadViews()
+        viewController.dismiss(animated: true, completion: nil)
+    }
+    
+    func userDidCancel(in viewController: AddTransactionFormViewController) {
         viewController.dismiss(animated: true, completion: nil)
     }
     
     // MARK: TransactionViewControllerDelegate
+    
+    func userDidSelectTransaction(at index: Int) {
+        let addViewController = AddTransactionFormViewController()
+        let addNavigationController = UINavigationController(rootViewController: addViewController)
+        
+        addViewController.delegate = self
+        addViewController.personId = personId
+        addViewController.transactionId = sortedTransactions![index].objectID
+        
+        present(addNavigationController, animated: true, completion: nil)
+    }
     
     func userDidDeleteTransaction(at index: Int) {
         guard let person = person else { return }
