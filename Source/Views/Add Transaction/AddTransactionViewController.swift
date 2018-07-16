@@ -89,6 +89,7 @@ class AddTransactionFormViewController: FormViewController {
         didSet {
             loadViewIfNeeded()
             loadForm()
+            
         }
     }
     
@@ -102,12 +103,13 @@ class AddTransactionFormViewController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Add"
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonTapped))
         
     }
     
     func loadForm() {
+        title = transaction == nil ? "Add" : "Edit"
+        
         form.removeAll()
         
         guard let person = person else { return }
