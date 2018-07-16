@@ -134,6 +134,7 @@ class AddTransactionFormViewController: FormViewController {
                 }
                 
                 segmentedRow.onChange({ segmentedRow in
+                    self.updateTotalRow()
                     updateTints()
                 })
                 
@@ -150,7 +151,7 @@ class AddTransactionFormViewController: FormViewController {
         form +++ Section("Amount")
             <<< SegmentedRow<AmountType>("amountType") { amountTypeRow in
                 amountTypeRow.options = [.simple, .percentage, .ratio]
-                amountTypeRow.value = .simple
+                amountTypeRow.value = transaction?.amount.type ?? .simple
                 amountTypeRow.displayValueFor = { $0?.shortDescription }
                 amountTypeRow.onChange { _ in self.updateAmountRows() }
             }
@@ -163,7 +164,9 @@ class AddTransactionFormViewController: FormViewController {
                     return formatter
                 }()
                 
-                amountRow.value = transaction != nil ? Double(abs(transaction!.amount.value)) : nil
+                if let inputs = transaction?.amount.inputs, inputs.count >= 2 {
+                    amountRow.value = Double(inputs[0])
+                }
                 
                 amountRow.onChange { _ in self.updateTotalRow() }
             })
@@ -171,10 +174,18 @@ class AddTransactionFormViewController: FormViewController {
             
             <<< IntRow("amountVar1", { row in
                 row.onChange { _ in self.updateTotalRow() }
+                
+                if let inputs = transaction?.amount.inputs, inputs.count >= 2 {
+                    row.value = Int(inputs[1])
+                }
             })
             
             <<< IntRow("amountVar2", { row in
                 row.onChange { _ in self.updateTotalRow() }
+                
+                if let inputs = transaction?.amount.inputs, inputs.count >= 3 {
+                    row.value = Int(inputs[2])
+                }
             })
             
             <<< TextRow("totalAmount", { totalAmount in
@@ -212,13 +223,10 @@ class AddTransactionFormViewController: FormViewController {
                 button.title = transaction == nil ? "Add" : "Save"
                 button.cellSetup({ _,_ in updateTints() })
                 button.onCellSelection({ _, _ in
-                    let amountRow: DecimalRow = self.form.rowBy(tag: "amount")!
                     let descriptionRow: TextRow = self.form.rowBy(tag: "description")!
-                    let moocherRow: SegmentedRow<TransactionParty> = self.form.rowBy(tag: "moocher")!
                     let dateRow: DateTimeRow = self.form.rowBy(tag: "date")!
                     let settlementDateRow: DateTimeRow = self.form.rowBy(tag: "settlementDate")!
                     
-                    let moocher = moocherRow.value!
                     let date = dateRow.value!
                     let settlementDate = settlementDateRow.value
                     
@@ -226,14 +234,12 @@ class AddTransactionFormViewController: FormViewController {
                         self.alert(title: "Error", message: "Please enter a description", completion: nil); return
                     }
                     
-                    guard let amountValue = self.totalAmountValue else {
+                    guard let _ = self.totalAmountValue(withSign: true) else {
                         self.alert(title: "Error", message: "Please enter an amount", completion: nil); return
                     }
                     
-                    let unsignedAmount = Float(amountValue)
+                    let amount = Amount(type: self.selectedAmountType, inputs: self.amountInputs(withSign: true))
                     
-                    let sign = moocher.borrowerSign
-                    let amount = Float(sign.rawValue) * unsignedAmount
                     
                     if let transaction = self.transaction {
                         TransactionManager.shared.updateTransaction(transaction, withDescription: description, amount: amount, date: date, settlementDate: settlementDate)
@@ -248,21 +254,30 @@ class AddTransactionFormViewController: FormViewController {
         updateAmountRows()
     }
     
-    var totalAmountValue: Double? {
-        let selectedType = (form.rowBy(tag: "amountType") as? SegmentedRow<AmountType>)!.value!
-        
+    var selectedAmountType: AmountType {
+        return (form.rowBy(tag: "amountType") as? SegmentedRow<AmountType>)!.value!
+    }
+    
+    func amountInputs(withSign: Bool) -> [Float] {
         let amountRow = form.rowBy(tag: "amount") as! DecimalRow
         let var1Row = form.rowBy(tag: "amountVar1") as! IntRow
         let var2Row = form.rowBy(tag: "amountVar2") as! IntRow
         
-        
-        let inputs = ([amountRow.value?.floatValue ?? 0.0,
-                       [AmountType.percentage, AmountType.ratio].contains(selectedType) ? var1Row.value?.floatValue : nil,
-                       [AmountType.ratio].contains(selectedType) ? var2Row.value?.floatValue : nil
-            ]) .compactMap({ $0 })
-        
-        if let totalValue = try? Amount.calculateValue(ofType: selectedType, with: inputs) {
-            return Double(totalValue)
+        let selectedType = selectedAmountType
+        return [amountRow.value?.floatValue ?? 0.0,
+                 [AmountType.percentage, AmountType.ratio].contains(selectedType) ? var1Row.value?.floatValue : nil,
+                 [AmountType.ratio].contains(selectedType) ? var2Row.value?.floatValue : nil
+            ].compactMap({ $0 })
+    }
+    
+    func totalAmountValue(withSign: Bool) -> Double? {
+        if let totalValue = try? Amount.calculateValue(ofType: selectedAmountType, with: amountInputs(withSign: withSign)) {
+            
+            let moocherRow: SegmentedRow<TransactionParty> = self.form.rowBy(tag: "moocher")!
+            let moocher = moocherRow.value!
+            let multiplier = withSign ? Float(moocher.borrowerSign.rawValue) : 1.0
+            
+            return Double(multiplier * totalValue)
         } else {
             return nil
         }
@@ -312,9 +327,9 @@ class AddTransactionFormViewController: FormViewController {
         let moocher = (form.rowBy(tag: "moocher") as! SegmentedRow<TransactionParty>).value!
         let totalRow = (form.rowBy(tag: "totalAmount") as? TextRow)!
         
-        totalRow.title = moocher == .me ? "Their Share" : "My Share"
+        totalRow.title = moocher == .them ? "Their Share" : "My Share"
         totalRow.value = "?"
-        if let total = totalAmountValue {
+        if let total = totalAmountValue(withSign: false) {
             totalRow.value = NumberFormatter.sharedCurrencyFormatter.string(from: NSNumber(value: total))
         }
         

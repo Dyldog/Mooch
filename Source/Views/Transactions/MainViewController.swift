@@ -124,46 +124,6 @@ public class MainViewController: UIViewController, AddTransactionViewControllerD
         present(addNavigationController, animated: true, completion: nil)
     }
     
-    func showAddTransactionAlert(description: String?, amount: String?) {
-        guard let person = person else { return }
-        let alert = UIAlertController(title: "Add Transaction", message: nil, preferredStyle: .alert)
-        
-        alert.addTextField(configurationHandler: { descriptionTextfield in
-            descriptionTextfield.placeholder = "Description"
-            descriptionTextfield.text = description
-        })
-        
-        alert.addTextField(configurationHandler: { amountTextfield in
-            amountTextfield.placeholder = "Amount"
-            amountTextfield.keyboardType = .decimalPad
-            amountTextfield.text = amount
-        })
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { action in
-            guard let textFields = alert.textFields else { return }
-            
-            guard let newDescription = textFields[0].text, newDescription.count > 0 else {
-                self.alert(title: "Error", message: "Please enter a valid description", completion: {
-                    self.present(alert, animated: true, completion: nil)
-                })
-                return
-            }
-            
-            guard let newAmountString = alert.textFields?[1].text, newAmountString.count > 0, let newAmount = Float(newAmountString) else {
-                self.alert(title: "Error", message: "Please enter a valid amount", completion: {
-                    self.present(alert, animated: true, completion: nil)
-                })
-                return
-            }
-            
-            self.transactionManager.addTransaction(withDescription: newDescription, amount: newAmount, date: Date(), forPersonWithId: person.objectID)
-            self.reloadViews()
-        }))
-        
-        present(alert, animated: true, completion: nil)
-    }
-    
     private func reloadBalanceView() {
         guard let person = person, let transactions = person.transactions?.array as? [Transaction] else { return }
         balanceView.viewItem = transactions.balanceViewItem

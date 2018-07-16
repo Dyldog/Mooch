@@ -76,11 +76,11 @@ class TransactionManager {
         return newPerson
     }
     
-    @discardableResult func addTransaction(withDescription description: String, amount: Float, date: Date, settlementDate: Date? = nil, forPersonWithId personId: NSManagedObjectID) -> Transaction? {
+    @discardableResult func addTransaction(withDescription description: String, amount: Amount, date: Date, settlementDate: Date? = nil, forPersonWithId personId: NSManagedObjectID) -> Transaction? {
         guard let personManagedObject = try? managedObjectContext.existingObject(with: personId), let person = personManagedObject as? Person else { return nil }
         let newTransaction = Transaction(context: managedObjectContext)
         newTransaction.transactionDescription = description
-        newTransaction.amount = Amount(type: .simple, inputs: [amount])
+        newTransaction.amount = amount
         newTransaction.date = date
         person.addToTransactions(newTransaction)
         try? person.managedObjectContext?.save() // TODO: Handle errors
@@ -88,10 +88,10 @@ class TransactionManager {
         return newTransaction
     }
     
-    @discardableResult func updateTransaction(_ transaction: Transaction, withDescription description: String, amount: Float, date: Date, settlementDate: Date? = nil) -> Transaction? {
+    @discardableResult func updateTransaction(_ transaction: Transaction, withDescription description: String, amount: Amount, date: Date, settlementDate: Date? = nil) -> Transaction? {
 
         transaction.transactionDescription = description
-        transaction.amount = Amount(type: .simple, inputs: [amount])
+        transaction.amount = amount
         transaction.date = date
         transaction.settlementDate = settlementDate
         try? transaction.managedObjectContext?.save() // TODO: Handle errors
