@@ -6,7 +6,7 @@
         <relationship name="transactions" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Transaction" inverseName="person" inverseEntity="Transaction" syncable="YES"/>
     </entity>
     <entity name="Transaction" representedClassName="Transaction" syncable="YES" codeGenerationType="class">
-        <attribute name="amount" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="amountData" attributeType="Binary" syncable="YES"/>
         <attribute name="date" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="settlementDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="transactionDescription" attributeType="String" syncable="YES"/>

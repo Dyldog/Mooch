@@ -15,6 +15,11 @@ extension NumberFormatter {
         currencyFormatter.numberStyle = .currency
         return currencyFormatter
     }()
+    
+    static let sharedDefaultFormatter: NumberFormatter = {
+        let currencyFormatter = NumberFormatter()
+        return currencyFormatter
+    }()
 }
 
 extension DateFormatter {
@@ -32,7 +37,7 @@ private extension Array where Element == Transaction {
         return map {
             return TransactionCellItem(
                 description: $0.transactionDescription!,
-                amount: $0.amount,
+                amount: $0.amount.value,
                 date: DateFormatter.sharedDateFormatter.string(from: $0.date!)
             )
         }
